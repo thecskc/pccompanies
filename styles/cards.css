@@ -17,3 +17,22 @@
 .card:hover {
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 }
+
+.card-container{
+    display:flex;
+    width:100%;
+    flex-direction: column;
+    height:100%;
+}
+
+.card-heading{
+    font-family: 'Roboto', sans-serif;
+}
+
+.card-subheading{
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+
+

@@ -1,56 +1,29 @@
-import React from 'react'
-import Link from 'next/link'
+import React, { Component } from "react";
+import "../styles/navbar.css";
+import Link from "next/link";
+import Router from "next/router";
 
-const links = [
-  { href: 'https://zeit.co/now', label: 'ZEIT' },
-  { href: 'https://github.com/zeit/next.js', label: 'GitHub' }
-].map(link => {
-  link.key = `nav-link-${link.href}-${link.label}`
-  return link
-})
+class Navbar extends Component {
+    constructor(props) {
+        super(props);
+    }
 
-const Nav = () => (
-  <nav>
-    <ul>
-      <li>
-        <Link href='/'>
-          <a>Home</a>
-        </Link>
-      </li>
-      {links.map(({ key, href, label }) => (
-        <li key={key}>
-          <a href={href}>{label}</a>
-        </li>
-      ))}
-    </ul>
+    handleClick(event, path) {
+        event.preventDefault();
+        window.location.href = path;
+    }
 
-    <style jsx>{`
-      :global(body) {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
-          Helvetica, sans-serif;
-      }
-      nav {
-        text-align: center;
-      }
-      ul {
-        display: flex;
-        justify-content: space-between;
-      }
-      nav > ul {
-        padding: 4px 16px;
-      }
-      li {
-        display: flex;
-        padding: 6px 8px;
-      }
-      a {
-        color: #067df7;
-        text-decoration: none;
-        font-size: 13px;
-      }
-    `}</style>
-  </nav>
-)
+    render() {
+        return (
+            <div className="topnav" id="myTopnav">
+                <div onClick={event => this.handleClick(event, "/")}>Profile</div>
+                <div onClick={event => this.handleClick(event, "/bravura")}>
+                    Challenges
+                </div>
 
-export default Nav
+            </div>
+        );
+    }
+}
+
+export default Navbar;

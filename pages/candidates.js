@@ -22,7 +22,7 @@ class Candidates extends Component {
             "overall_score": "6.5/7",
             "challenges": [
                 {
-                    "challenge": "binance_challenge",
+                    "challengeTitle": "The Binance Challenge",
                     "innv": "7/7",
                     "prod_design": "6/7",
                     "feasibility": "7/7",
@@ -32,7 +32,7 @@ class Candidates extends Component {
                     "submission_link": "https://google.com"
                 },
                 {
-                    "challenge": "coding_bootcamp_challenge",
+                    "challengeTitle": "The Coding Bootcamp Challenge",
                     "innv": "7/7",
                     "prod_design": "6/7",
                     "feasibility": "7/7",

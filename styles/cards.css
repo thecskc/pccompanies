@@ -30,7 +30,13 @@
 }
 
 .card-heading{
+    font-size:1.3rem;
     font-family: 'Roboto', sans-serif;
+    opacity: 1;
+    font-weight: 700;
+    letter-spacing: 0.0625em;
+    line-height: 1.4;
+
 }
 
 .card-subheading{

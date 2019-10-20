@@ -4,6 +4,7 @@ import "../styles/signup.css";
 import "../styles/styles.css";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import firebase from "../components/firebase";
 
 const customStyles = {};
 
@@ -23,6 +24,23 @@ class SignUp extends Component {
   handleSubmit(event) {
     event.preventDefault();
     //TODO: FINISH THIS
+
+    try {
+      const email = this.state.email;
+      const password = this.state.password;
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(function() {
+          window.location.href = "/index";
+        })
+        .catch(function(e) {
+          console.log(e);
+          alert(e.message);
+        });
+    } catch (e) {
+      console.log("oops");
+    }
   }
 
   handleChange(event) {
@@ -54,8 +72,8 @@ class SignUp extends Component {
         />
         <br />
         <br />
-        <div className="row" style={{justifyContent:"space-evenly"}}>
-          <Button variant="contained" color="primary" style={{ width: "20%" }}>
+        <div className="row" style={{ justifyContent: "space-evenly" }}>
+          <Button variant="contained" color="primary" style={{ width: "20%" }} onClick={(event)=>this.handleSubmit(event)}>
             Sign Up
           </Button>
           <Button variant="contained" color="primary" style={{ width: "20%" }}>

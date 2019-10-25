@@ -3,6 +3,7 @@ import "../styles/cards.css";
 import "../styles/styles.css";
 import Navbar from "../components/nav";
 import firebase from "../components/firebase";
+import Button from "@material-ui/core/Button";
 
 class EditProfile extends Component {
   constructor(props) {
@@ -43,30 +44,31 @@ class EditProfile extends Component {
   }
 
   saveData(event) {
-
     const self = this;
     event.preventDefault();
     const collection = "Profiles";
     const saveDoc = this.createNewStateObj();
     delete saveDoc["user"];
-      firebase.firestore().collection(collection).where("username","==",self.state.username).get().then(function(docs){
-        if(docs.size===0){
-            firebase
-                .firestore()
-                .collection(collection)
-                .doc(self.state.user.uid)
-                .set(saveDoc)
-                .then(() => {
-                    console.log("doc written");
-                    alert("Saved!");
-                });
-        }
-        else{
+    firebase
+      .firestore()
+      .collection(collection)
+      .where("username", "==", self.state.username)
+      .get()
+      .then(function(docs) {
+        if (docs.size === 0) {
+          firebase
+            .firestore()
+            .collection(collection)
+            .doc(self.state.user.uid)
+            .set(saveDoc)
+            .then(() => {
+              console.log("doc written");
+              alert("Saved!");
+            });
+        } else {
           alert("Username already exists");
         }
-      })
-
-
+      });
   }
   handleChange(event) {
     event.preventDefault();
@@ -166,13 +168,14 @@ class EditProfile extends Component {
                 style={{ width: "75%" }}
                 required
               />
-
-              <button
-                onClick={event => this.saveData(event)}
-                className="button-cta"
+              <br/><br/>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.saveData}
               >
-                Save
-              </button>
+                Save{" "}
+              </Button>
             </form>
           </div>
         </>

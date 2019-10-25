@@ -25,7 +25,6 @@ class Navbar extends Component {
         <div onClick={event => this.handleClick(event, "/challenges")}>
           Challenges
         </div>
-        <div onClick={event => this.handleClick(event, "/jobs")}>Jobs</div>
       </div>
     );
   }

@@ -3,6 +3,7 @@ import "../styles/cards.css";
 import "../styles/styles.css";
 import Navbar from "../components/nav";
 import firebase from "../components/firebase";
+import Button from "@material-ui/core/Button";
 
 class Profile extends Component {
   constructor(props) {
@@ -33,11 +34,10 @@ class Profile extends Component {
     });
   }
 
-  handlePortfolioClick(event){
-      event.preventDefault();
-      const username = this.state.doc.data().username;
-      window.open("/portfolio/"+username);
-
+  handlePortfolioClick(event) {
+    event.preventDefault();
+    const username = this.state.doc.data().username;
+    window.open("/portfolio/" + username);
   }
 
   resumeClick(event, url) {
@@ -61,83 +61,104 @@ class Profile extends Component {
             <div className="row" style={{ width: "100vw", height: "100vh" }}>
               <div className="col-30" style={{ margin: "2vw" }}>
                 <div
-                  className="row card"
+                  className="card"
                   style={{
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
                     padding: "16px",
-
-
+                    width: "100%",
+                    height: "100%"
                   }}
                 >
                   <div>
                     <div className="card-heading">
                       {this.state.doc.data().name}
                     </div>
-                    <div
-                      className="card-subheading"
-                      onClick={event =>
-                        this.resumeClick(
-                          event,
-                          this.state.doc.data().resume_link
-                        )
+                    <br />
+                    <br />
 
-                      }
-                      style={{color:"blue"}}
-                    >
-                      Click for resume
-                    </div>
+                    <div className="paragraph">{this.state.doc.data().bio}</div>
                   </div>
-                  <div
-                    className="button-cta"
-                    style={{ width: "33%", alignSelf: "center" }}
-                    onClick={this.handlePortfolioClick}
+
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    style={{ width: "30%", alignSelf: "center" }}
+                    onClick={event =>
+                      this.resumeClick(event, this.state.doc.data().resume_link)
+                    }
                   >
-                    View Portfolio
-                  </div>
-                </div>
-
-                <div
-                  className="row card"
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: "16px"
-                  }}
-                >
-                  <div className="paragraph">{this.state.doc.data().bio}</div>
+                    View Resume
+                  </Button>
                 </div>
               </div>
 
               <div className="col-60" style={{ margin: "2vw" }}>
                 <div
-                  className="row card"
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: "16px"
-                  }}
-                >
-                  <div className="card-heading">Overall Scores</div>
-                </div>
-                <div
-                  className="row card"
+                  className="card"
                   style={{
                     display: "flex",
                     flexDirection: "column",
                     padding: "16px",
-
-
+                    width: "100%",
+                      height:"60%"
                   }}
                 >
-                  <div className="card-heading" style={{alignSelf:"flex-start"}}>Recent Roles</div>
+                  <div
+                    className="card-heading"
+                    style={{ alignSelf: "flex-start" }}
+                  >
+                    Overall Scores
+                  </div>
+
+                    <br/>
+
+                    <div className="paragraph-small">
+                        Scores:
+                        <br />
+
+                        Innovativeness - 7/7<br/>
+                        Product Design - 6/7<br/>
+                        Feasibility - 6/7<br/>
+                        Market Research and Competitive Analysis - 7/7<br/>
+                        Launch Plan - 7/7<br/>
+                    </div>
+
                     <br/><br/>
+
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    style={{ width: "20%" }}
+                    onClick={this.handlePortfolioClick}
+                  >
+                    View Portfolio
+                  </Button>
+                </div>
+                <div
+                  className="card"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: "16px",
+                    width: "100%",
+                      height:"40%"
+                  }}
+                >
+                  <div
+                    className="card-heading"
+                    style={{ alignSelf: "flex-start" }}
+                  >
+                    Recent Roles
+                  </div>
+                  <br />
+                  <br />
                   <div className="card-subheading">
                     1) {this.state.doc.data().recent_role_1}
                   </div>
-                    <br/><br/>
-
+                  <br />
+                  <br />
 
                   <div className="card-subheading">
                     2) {this.state.doc.data().recent_role_2}
@@ -149,7 +170,13 @@ class Profile extends Component {
         </>
       );
     } else {
-      return <div/>;
+      return (
+        <div>
+          {" "}
+          <Navbar />
+          <div />
+        </div>
+      );
     }
   }
 }

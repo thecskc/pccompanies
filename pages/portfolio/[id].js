@@ -5,6 +5,7 @@ import Navbar from "../../components/nav";
 import Router from "next/router";
 import PortfolioItem from "../../components/PortfolioItem";
 
+
 class Portfolio extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +14,13 @@ class Portfolio extends Component {
     };
     this.challengeData = [];
     this.getChallengeData.bind(this);
+  }
+
+  anonymizeData(challengeData){
+
+
+
+
   }
 
   getChallengeData(id) {
@@ -43,6 +51,9 @@ class Portfolio extends Component {
   }
 
   componentDidMount() {
+
+
+
     let url = window.location.href.split("/");
     console.log(url);
     let id = url[url.length - 1];

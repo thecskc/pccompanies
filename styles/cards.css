@@ -41,6 +41,10 @@
 
 .card-subheading{
     font-family: 'Open Sans', sans-serif;
+    font-size:1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.0625em;
+    line-height: 1.4;
 }
 
 

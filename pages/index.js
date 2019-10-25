@@ -19,6 +19,7 @@ class Home extends React.Component {
         this.setState({
           user: user
         });
+        window.location.href="/profile";
       } else {
         window.location.href = "/login";
       }
@@ -26,6 +27,9 @@ class Home extends React.Component {
   }
 
   render() {
+
+
+
     if (this.state.user) {
       return <div>Home</div>;
     } else {

@@ -17,11 +17,12 @@ class SignUp extends Component {
       password: "",
       authenticated: false
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSignIn = this.handleSignIn.bind(this);
   }
 
-  handleSubmit(event) {
+  handleSignUp(event) {
     event.preventDefault();
     //TODO: FINISH THIS
 
@@ -31,6 +32,25 @@ class SignUp extends Component {
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
+        .then(function() {
+          window.location.href = "/index";
+        })
+        .catch(function(e) {
+          console.log(e);
+          alert(e.message);
+        });
+    } catch (e) {
+      console.log("oops");
+    }
+  }
+
+  handleSignIn(event) {
+    try {
+      const email = this.state.email;
+      const password = this.state.password;
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
         .then(function() {
           window.location.href = "/index";
         })
@@ -73,10 +93,20 @@ class SignUp extends Component {
         <br />
         <br />
         <div className="row" style={{ justifyContent: "space-evenly" }}>
-          <Button variant="contained" color="primary" style={{ width: "20%" }} onClick={(event)=>this.handleSubmit(event)}>
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ width: "20%" }}
+            onClick={event => this.handleSignUp(event)}
+          >
             Sign Up
           </Button>
-          <Button variant="contained" color="primary" style={{ width: "20%" }}>
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ width: "20%" }}
+            onClick={event => this.handleSignIn(event)}
+          >
             Login
           </Button>
         </div>
